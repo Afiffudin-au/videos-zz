@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addVideoList } from '../features/videoSlice';
+import { addVideoList, addVideoPlaying, addCommentThread, addCommentItem } from '../features/videoSlice';
 export function useGetVideolist() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -12,16 +12,16 @@ export function useGetVideolist() {
       url: 'https://www.googleapis.com/youtube/v3/videos',
       params: {
         key: 'AIzaSyDwnxsOzAJCAzdV-aC36MVnZXX7UzHQtc8',
-        part: 'snippet',
+        part: 'snippet,statistics',
         chart: 'mostPopular',
-        pageToken : pageToken,
-        maxResults : 50
+        pageToken: pageToken,
+        maxResults: 50
       },
     })
       .then((res) => {
         setLoading(false);
         dispatch(addVideoList({
-          videoListData : res.data
+          videoListData: res.data
         }))
       })
       .catch((err) => {
@@ -30,4 +30,61 @@ export function useGetVideolist() {
       });
   };
   return { getVideoList, loading };
+}
+export function useGetVideoPlaying() {
+  const dispatch = useDispatch()
+  const getVideoPlaying = (id) => {
+    dispatch(addVideoPlaying({
+      loading : true
+    }))
+    Axios({
+      method: 'GET',
+      url: 'https://www.googleapis.com/youtube/v3/videos',
+      params: {
+        key: 'AIzaSyDwnxsOzAJCAzdV-aC36MVnZXX7UzHQtc8',
+        part: 'snippet,contentDetails,statistics,player',
+        id: id
+      }
+    }).then(res=>{
+      dispatch(addVideoPlaying({
+        dataVideoPlaying : res.data,
+        loading : false
+      }))
+    }).catch(err=>{
+      dispatch(addVideoPlaying({
+        loading : false
+      }))
+      alert(err)
+    })
+  }
+  return { getVideoPlaying }
+}
+export function useGetCommentThreads(){
+ const dispatch = useDispatch()
+ const getCommentThreads = (videoId,pageToken)=>{
+   dispatch(addCommentThread({
+     loading : true,
+   }))
+   Axios({
+    method: 'GET',
+    url: 'https://www.googleapis.com/youtube/v3/commentThreads',
+    params: {
+      key: 'AIzaSyDwnxsOzAJCAzdV-aC36MVnZXX7UzHQtc8',
+      part: 'snippet,replies,id',
+      videoId: videoId,
+      pageToken : pageToken
+    }
+   }).then(res=>{
+    dispatch(addCommentThread({  
+      dataCommentThread : res.data,
+      loading : false,
+    }))
+   }).catch(err=>{
+     dispatch(addCommentThread({
+       loading : false
+     }))
+     alert(err)
+   })
+ }
+ return {getCommentThreads}
 }

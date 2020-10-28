@@ -1,0 +1,39 @@
+.videoPlayingChild{
+  color: rgb(204, 204, 204);
+  &__videoBox{
+    iframe{
+      width: 100% !important;
+    }
+  }
+  &__details{
+    .content{
+      padding: 10px;
+      h1{
+        font-size: 25px;
+        font-weight: 700 !important;
+      }
+      h2{
+        font-size: 20px;
+        font-weight: 600 !important;
+        margin-bottom: 5px;
+      }
+      h3{
+        font-weight: 400 !important;
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+      .MuiAccordionSummary-expandIcon{
+        color: white;
+      }
+      .descriptions{
+        width: 100%;
+        word-wrap: break-word;
+        white-space: pre-wrap; 
+        white-space: -o-pre-wrap; 
+        white-space: -moz-pre-wrap; 
+        white-space: -pre-wrap; 
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 export const useStylesNavbar = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position : 'sticky',
+    top : '0'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -54,5 +56,18 @@ export const useStylesNavbar = makeStyles((theme) => ({
         width: '30ch',
       },
     },
+  },
+}));
+export const useStylesAccordionCustom = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  background : {
+    backgroundColor: '#101010;',
+    color : 'rgb(204, 204, 204)'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
   },
 }));
