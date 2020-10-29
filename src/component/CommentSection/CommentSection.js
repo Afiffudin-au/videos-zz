@@ -1,9 +1,9 @@
 import React ,{useEffect}from 'react'
-import { useGetCommentThreads } from '../../../useGet/useGet'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectCommentThread, selectCommentItems, addCommentThread } from '../../../features/videoSlice'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import CommentCard from './CommentCard';
+import { selectCommentThread, selectCommentItems, addCommentThread } from '../../features/videoSlice';
+import { useGetCommentThreads } from '../../useGet/useGet';
 function CommentSection({videoId}) {
   const {getCommentThreads} = useGetCommentThreads()
   const commentThreads = useSelector(selectCommentThread)
@@ -32,8 +32,10 @@ function CommentSection({videoId}) {
         //       </div>
         //     ))
         //  ))
-         commentItem?.map(item=>(
-          <MemoizedChildComponent item={item}/>
+         commentItem?.map((item,index)=>(
+        <div key={index}>
+            <MemoizedChildComponent item={item}/>
+          </div>
         ))
         }
       </div>
@@ -47,7 +49,7 @@ function CommentSection({videoId}) {
 }
 function ChildComponent({item}){
   return(
-    <CommentCard key={item.videoId} displayName={item.authorDisplayName} profileImageUrl={item.authorProfileImageUrl} textDisplay={item.textDisplay} textOriginal={item.textOriginal}/>
+    <CommentCard displayName={item.authorDisplayName} profileImageUrl={item.authorProfileImageUrl} textDisplay={item.textDisplay} textOriginal={item.textOriginal}/>
   )
 }
 function compare(prevProps , nextProps){

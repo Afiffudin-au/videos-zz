@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addVideoList, addVideoPlaying, addCommentThread, addCommentItem } from '../features/videoSlice';
+import { addVideoList, addVideoPlaying, addCommentThread, addResultVideoList } from '../features/videoSlice';
 export function useGetVideolist() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -87,4 +87,35 @@ export function useGetCommentThreads(){
    })
  }
  return {getCommentThreads}
+}
+export function useGetVideosSearch(){
+  const dispatch = useDispatch()
+  const getVideosSearch = (query,pageToken)=>{
+    dispatch(addResultVideoList({
+      loading : true
+    }))
+    console.log(query,pageToken)
+    Axios({
+      method: 'GET',
+      url: 'https://www.googleapis.com/youtube/v3/search',
+      params: {
+        key: 'AIzaSyDwnxsOzAJCAzdV-aC36MVnZXX7UzHQtc8',
+        part: 'snippet',
+        maxResults: 25,
+        q : query,
+        pageToken : pageToken
+      }
+    }).then(res=>{
+      dispatch(addResultVideoList({
+        DataResultVideoList : res.data,
+        loading : false
+      }))
+    }).catch(err=>{
+      dispatch(addResultVideoList({
+        loading  : false
+      }))
+      alert(err)
+    })
+  }
+  return {getVideosSearch}
 }

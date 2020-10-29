@@ -7,11 +7,17 @@ import {
 } from "react-router-dom";
 import Home from './component/Home/Home';
 import PlayingVideo from './component/PlayingVideo/PlayingVideo';
+import SearchVideoResult from './component/SearchVideoResult/SearchVideoResult';
+import Navbar from './component/Navbar/Navbar';
 function App() {
   return (
     <Router> 
       <div className="App">
         <Switch>
+          <Route path="/searchResult">
+           <Navbar/>
+           <SearchVideoResult/>
+          </Route> 
           <Route path="/playingVideo">
            <PlayingVideo/>
           </Route> 

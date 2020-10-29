@@ -36,7 +36,6 @@ function VideoList() {
         }
       </div>
       <MemoizedChildComponent newVideoList={newVideoList}/>
-      {/* <CardVideoList/> */}
       <div className="VideoList__control flex flex-col mt-2 mx-auto xs:w-8/12 sm:w-6/12">
         {
           newVideoList?.prevPageToken && <button className="px-2 font-semibold py-2 mb-2 w-full border-none cursor-pointer hover:bg-red-700 text-lg rounded shadow-xl outline-none bg-red-500 text-black" onClick={handleControlPrev}>Prev Load More</button>

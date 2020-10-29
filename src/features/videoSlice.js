@@ -5,6 +5,7 @@ export const videoSlice = createSlice({
   initialState: {
     videoList: [],
     videoPlaying : [],
+    resultVideoList : [],
     commentBlock : {
       commentThread : [],
       commentItem : [],
@@ -22,12 +23,16 @@ export const videoSlice = createSlice({
       state.commentBlock.commentItem = action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))
       // state.commentBlock.commentItem = [...new Set([...state.commentBlock.commentItem,action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))])]
     },
+    addResultVideoList : (state,action)=>{
+      state.resultVideoList = action.payload
+    }
   },
 });
 
-export const { addVideoList,addVideoPlaying,addCommentThread,addCommentItem} = videoSlice.actions;
+export const { addVideoList,addVideoPlaying,addCommentThread,addResultVideoList} = videoSlice.actions;
 export const selectVideoList = state => state.video.videoList;
 export const selectVideoPlaying = state => state.video.videoPlaying
 export const selectCommentThread = state => state.video.commentBlock.commentThread
 export const selectCommentItems = state=> state.video.commentBlock.commentItem
+export const selectResultVideoList = state => state.video.resultVideoList
 export default videoSlice.reducer;

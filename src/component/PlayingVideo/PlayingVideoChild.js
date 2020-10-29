@@ -11,7 +11,7 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CommentIcon from '@material-ui/icons/Comment';
 import IconButton from '@material-ui/core/IconButton';
 import './PlayingVideoChild.scss';
-import CommentSection from './CommentSection/CommentSection';
+import CommentSection from '../CommentSection/CommentSection';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
 import { UseNumberWithComma } from '../../useNumberWithComma/UseNumerWithComma';
 function PlayingVideoChild({ item }) {
