@@ -94,7 +94,6 @@ export function useGetVideosSearch(){
     dispatch(addResultVideoList({
       loading : true
     }))
-    console.log(query,pageToken)
     Axios({
       method: 'GET',
       url: 'https://www.googleapis.com/youtube/v3/search',

@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import './CommentCard.scss'
 function CommentCard({displayName,profileImageUrl,textDisplay,textOriginal}) {
   const [viewMore,setViewMore] = useState(false);
-  console.log("render comment card")
   return (
     <div className="CommentCard">
       <div className="CommentCard__ProfileName flex items-center">

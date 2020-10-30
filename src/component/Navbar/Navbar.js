@@ -29,24 +29,24 @@ function Navbar() {
           <Typography className={classes.title} variant="h6" noWrap>
            Videos-zz
           </Typography>
-          <form action="">
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase
-                value={query}
-                onChange={(e)=>setQuery(e.target.value)}
-                placeholder="Search videos and enter…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
-              <button onClick={handleSearch} style={{display : 'none'}}></button>
+              <form action="">
+                <InputBase
+                  value={query}
+                  onChange={(e)=>setQuery(e.target.value)}
+                  placeholder="Search videos and enter…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+                <button onClick={handleSearch} style={{display : 'none'}}></button>
+              </form>
             </div>
-          </form>
         </Toolbar>
       </AppBar>
     </div>
