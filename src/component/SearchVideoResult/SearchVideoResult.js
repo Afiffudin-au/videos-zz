@@ -8,9 +8,11 @@ import { useGetVideosSearch } from '../../useGet/useGet';
 function SearchVideoResult() {
   const resultVideo = useSelector(selectResultVideoList)
   const query = useSelector(selectQuery)
-  const newVideo = {...resultVideo?.DataResultVideoList}
   const {getVideosSearch} = useGetVideosSearch()
   const dispatch = useDispatch()
+  const newVideo = {...resultVideo?.DataResultVideoList}
+  const checkVideo = newVideo.items?.length === 0 && !resultVideo.loading
+  const cannotFindVideo = checkVideo
   const handleControlNext = ()=>{
     const videoListCoord = document.querySelector('.SearchVideoResult')
     window.scrollTo(0,videoListCoord.offsetTop - 100)
@@ -33,6 +35,11 @@ function SearchVideoResult() {
         {
           resultVideo.loading && <LinearProgress color="secondary"/>
         }
+      </div>
+      <div>
+      {
+        cannotFindVideo && <p className="text-white text-lg uppercase">Sorry We Cannot Find...</p>
+      }
       </div>
       <MemoizedChildComponent newVideo={newVideo}/>
       <div className="VideoList__control flex flex-col mt-2 mx-auto xs:w-8/12 sm:w-6/12">
