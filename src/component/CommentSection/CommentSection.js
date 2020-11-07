@@ -13,6 +13,7 @@ function CommentSection({videoId}) {
   useEffect(()=>{
     dispatch(addCommentThread({
       dataCommentThread : [],
+      removeCopyArray : true
     }))
     getCommentThreads(videoId)
   },[])
@@ -25,18 +26,18 @@ function CommentSection({videoId}) {
       </div>
       <div className="CommentSection__cards" style={{padding : '10px'}}>
         {
-        //   commentItem.map(items=>(
-        //     items?.map((item,index)=>(
-        //       <div key={index}>
-        //         <MemoizedChildComponent item={item}/>
-        //       </div>
-        //     ))
-        //  ))
-         commentItem?.map((item,index)=>(
-        <div key={index}>
-            <MemoizedChildComponent item={item}/>
-          </div>
-        ))
+          commentItem.map(items=>(
+            items?.map((item,index)=>(
+              <div key={index}>
+                <MemoizedChildComponent item={item}/>
+              </div>
+            ))
+         ))
+        //  commentItem?.map((item,index)=>(
+        // <div key={index}>
+        //     <MemoizedChildComponent item={item}/>
+        //   </div>
+        // ))
         }
       </div>
       <div className="CommentSection__loadMore" style={{padding : '10px'}}>

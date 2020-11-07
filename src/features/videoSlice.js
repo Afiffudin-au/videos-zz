@@ -20,8 +20,11 @@ export const videoSlice = createSlice({
     },
     addCommentThread : (state,action)=>{
       state.commentBlock.commentThread = action.payload
-      state.commentBlock.commentItem = action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))
-      // state.commentBlock.commentItem = [...new Set([...state.commentBlock.commentItem,action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))])]
+      if(action.payload.removeCopyArray){
+        state.commentBlock.commentItem.length = 0 
+      }
+      // state.commentBlock.commentItem = action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))
+      state.commentBlock.commentItem = [...new Set([...state.commentBlock.commentItem,action.payload.dataCommentThread?.items?.map(item=>(item.snippet.topLevelComment.snippet))])]
     },
     addResultVideoList : (state,action)=>{
       state.resultVideoList = action.payload
