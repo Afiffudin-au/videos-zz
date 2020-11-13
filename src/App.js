@@ -13,9 +13,9 @@ function App() {
   return (
     <Router> 
       <div className="App">
+        <Navbar/>
         <Switch>
           <Route path="/searchResult">
-           <Navbar/>
            <SearchVideoResult/>
           </Route> 
           <Route path="/playingVideo">
