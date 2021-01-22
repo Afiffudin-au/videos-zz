@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import IconButton from '@material-ui/core/IconButton';
 import './CommentCard.scss'
 function CommentCard({displayName,profileImageUrl,textDisplay,textOriginal}) {
-  const [viewMore,setViewMore] = useState(false);
   return (
     <div className="CommentCard">
       <div className="CommentCard__ProfileName flex items-center">

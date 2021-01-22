@@ -3,7 +3,8 @@ export const useStylesNavbar = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     position : 'sticky',
-    top : '0'
+    top : '0',
+    zIndex: 2
   },
   menuButton: {
     marginRight: theme.spacing(2),
